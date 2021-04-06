@@ -1,0 +1,36 @@
+import telebot
+bot = telebot.TeleBot('1530597141:AAHNp-jKytsh7kop3TJz5ykuYtnbNQ2AtVQ')
+
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.reply_to(message, f'тут крч шось при старті бота писати шось можна, {message.from_user.first_name}, для меню клацни /menu')
+
+@bot.message_handler(commands=['menu'])
+def send_welcome(message):
+    bot.reply_to(message, f'тут теж поки нічого нема, от всі його команди: /start  /help  /69 , або можеш просто написати привіт')
+
+
+@bot.message_handler(commands=['69'])
+def send_welcome(message):
+    bot.reply_to(message, f'{message.from_user.first_name}, от тобі і пасхалочка')
+
+
+@bot.message_handler(commands=['help'])
+def send_welcome(message):
+    bot.reply_to(message, f'бот поки нічого не може, треба його навчити всього')
+
+
+    
+
+@bot.message_handler(content_types=['text'])
+def get_text_messages(message):
+    if message.text.lower() == 'привіт':
+        bot.send_message(message.from_user.id, 'Привіт, мене звати Юді бот!')
+    else:
+        bot.send_message(message.from_user.id, 'Він поки занадто тупий ,шоб розпізнавати таке')
+
+
+
+
+    
+bot.polling(none_stop=True)
